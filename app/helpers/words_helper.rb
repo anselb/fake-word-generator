@@ -106,4 +106,26 @@ module WordsHelper
 
     end
   end
+
+  def nth_markov_chain(dictogram_dictionary, length)
+    hash_keys = dictogram_dictionary.keys
+    word = hash_keys.sample.clone
+    nth_order = word.length
+
+    last_index = length - nth_order
+    for char_index in 0...last_index
+      nth_char = char_index + nth_order
+      prefix_key = word[char_index...nth_char]
+
+      if dictogram_dictionary.key?(prefix_key)
+        char_dictogram = dictogram_dictionary[prefix_key]
+        next_char = weighted_dict_sampling(char_dictogram)
+        word += next_char
+      else
+        break
+      end
+    end
+
+    word
+  end
 end
