@@ -80,4 +80,30 @@ module WordsHelper
 
     dictogram_hash
   end
+
+  def weighted_dict_sampling(dictogram)
+    list_of_prefixes = dictogram.keys
+
+    total_tokens = 0
+    for prefix in list_of_prefixes
+      total_tokens += dictogram[prefix]
+    end
+
+    prng = Random.new
+    random_num = prng.rand(0...total_tokens)
+
+    dictogram.each do |prefix, value|
+      word_frequency = value
+
+      while word_frequency > 0
+        if random_num > 0
+          random_num -= 1
+          word_frequency -= 1
+        else
+          return prefix
+        end
+      end
+
+    end
+  end
 end
