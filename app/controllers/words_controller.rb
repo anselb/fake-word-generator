@@ -4,7 +4,10 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all
+    words = helpers.file_to_word_array('app/helpers/words3.txt')
+    all_words_dict = helpers.nth_markov_dictograms(words, 2)
+    @words = [helpers.nth_markov_chain(all_words_dict, 3)]
+    # @words = Word.all
   end
 
   # GET /words/1
