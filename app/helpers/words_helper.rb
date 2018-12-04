@@ -11,8 +11,6 @@ module WordsHelper
     words
   end
 
-  words = file_to_word_array('./words2.txt')
-
   class Dictogram < Hash
 
     def initialize(word = nil)
@@ -68,10 +66,12 @@ module WordsHelper
           current_letters = word[char_index...nth_char]
           next_letter = word[char_index + nth_order]
 
-          if dictogram_hash.key?(current_letters)
-            dictogram_hash[current_letters].add_count(next_letter)
-          else
-            dictogram_hash[current_letters] = Dictogram.new(next_letter)
+          if next_letter != nil
+            if dictogram_hash.key?(current_letters)
+              dictogram_hash[current_letters].add_count(next_letter)
+            else
+              dictogram_hash[current_letters] = Dictogram.new(next_letter)
+            end
           end
 
         end
@@ -109,7 +109,8 @@ module WordsHelper
 
   def nth_markov_chain(dictogram_dictionary, length)
     hash_keys = dictogram_dictionary.keys
-    word = hash_keys.sample.clone
+    word = ""
+    word << hash_keys.sample.clone
     nth_order = word.length
 
     last_index = length - nth_order
@@ -120,7 +121,7 @@ module WordsHelper
       if dictogram_dictionary.key?(prefix_key)
         char_dictogram = dictogram_dictionary[prefix_key]
         next_char = weighted_dict_sampling(char_dictogram)
-        word += next_char
+        word << next_char
       else
         break
       end
