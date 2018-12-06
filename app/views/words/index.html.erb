@@ -14,8 +14,11 @@
   <tbody>
     <% @words.each do |word| %>
       <tr>
-        <td><%= word.word %></td>
-        <td><%= word.votes %></td>
+        <td><%= word %></td>
+        <% if false %>
+          <td><%= word.word %></td>
+          <td><%= word.votes %></td>
+        <% end %>
         <td><%= link_to 'Show', word %></td>
         <td><%= link_to 'Edit', edit_word_path(word) %></td>
         <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
