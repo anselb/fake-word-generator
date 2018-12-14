@@ -1,0 +1,2 @@
+class ComponentList < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Components:</strong>
+  <%= @component_list.components %>
+</p>
+
+<p>
+  <strong>Components array:</strong>
+  <%= @component_list.components_array %>
+</p>
+
+<%= link_to 'Edit', edit_component_list_path(@component_list) %> |
+<%= link_to 'Back', component_lists_path %>

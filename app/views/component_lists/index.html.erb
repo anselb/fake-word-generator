@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Component Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Components</th>
+      <th>Components array</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @component_lists.each do |component_list| %>
+      <tr>
+        <td><%= component_list.components %></td>
+        <td><%= component_list.components_array %></td>
+        <td><%= link_to 'Show', component_list %></td>
+        <td><%= link_to 'Edit', edit_component_list_path(component_list) %></td>
+        <td><%= link_to 'Destroy', component_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Component List', new_component_list_path %>

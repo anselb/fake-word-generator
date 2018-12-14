@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  components: MyText
+  components_array: 
+
+two:
+  components: MyText
+  components_array: 

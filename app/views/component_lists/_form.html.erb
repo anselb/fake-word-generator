@@ -1,0 +1,27 @@
+<%= form_with(model: component_list, local: true) do |form| %>
+  <% if component_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(component_list.errors.count, "error") %> prohibited this component_list from being saved:</h2>
+
+      <ul>
+      <% component_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :components %>
+    <%= form.text_area :components %>
+  </div>
+
+  <div class="field">
+    <%= form.label :components_array %>
+    <%= form.text_field :components_array %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

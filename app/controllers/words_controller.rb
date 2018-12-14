@@ -4,10 +4,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    words = helpers.file_to_word_array('app/helpers/words30.txt')
-    all_words_dict = helpers.nth_markov_dictograms(words, 2)
-    @words = [helpers.nth_markov_chain(all_words_dict, 3)]
-    # @words = Word.all
+    @words = Word.all
   end
 
   # GET /words/1
@@ -18,6 +15,9 @@ class WordsController < ApplicationController
   # GET /words/new
   def new
     @word = Word.new
+    words = helpers.file_to_word_array('app/helpers/words30.txt')
+    all_words_dict = helpers.nth_markov_dictograms(words, 2)
+    @gen_word = helpers.nth_markov_chain(all_words_dict, 5)
   end
 
   # GET /words/1/edit
