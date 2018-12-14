@@ -14,8 +14,8 @@
   <tbody>
     <% @component_lists.each do |component_list| %>
       <tr>
+        <td><%= component_list.name %></td>
         <td><%= component_list.components %></td>
-        <td><%= component_list.components_array %></td>
         <td><%= link_to 'Show', component_list %></td>
         <td><%= link_to 'Edit', edit_component_list_path(component_list) %></td>
         <td><%= link_to 'Destroy', component_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>

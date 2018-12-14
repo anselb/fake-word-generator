@@ -14,8 +14,8 @@
   <tbody>
     <% @order_lists.each do |order_list| %>
       <tr>
+        <td><%= order_list.name %></td>
         <td><%= order_list.order %></td>
-        <td><%= order_list.order_array %></td>
         <td><%= link_to 'Show', order_list %></td>
         <td><%= link_to 'Edit', edit_order_list_path(order_list) %></td>
         <td><%= link_to 'Destroy', order_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
