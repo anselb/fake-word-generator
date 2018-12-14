@@ -69,6 +69,7 @@ class OrderListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_list_params
-      params.require(:order_list).permit(:order, :order_array)
+      params[:order_list][:order_array] = params[:order_list][:order].split(" ")
+      params.require(:order_list).permit(:name, :order, :order_list)
     end
 end

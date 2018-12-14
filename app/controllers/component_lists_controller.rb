@@ -69,6 +69,7 @@ class ComponentListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def component_list_params
-      params.require(:component_list).permit(:components, :components_array)
+      params[:component_list][:components_array] = params[:component_list][:components].split(" ")
+      params.require(:component_list).permit(:name, :components, :components_array)
     end
 end
