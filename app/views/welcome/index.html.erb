@@ -1,0 +1,83 @@
+<h1 id="fakewordgenerator">fake-word-generator</h1>
+
+<p>An API for generating fake words based on logical phonetic sound combinations</p>
+
+<p>First, I would have to get a basic understanding of phonetics and define rules for how a word can sound (possibly allow custom rules to dictate word generation by users?). If possible, I am thinking of storing a list of letters or a combination of letters by their "sound type category", similarly to consonants and vowels.</p>
+
+<p>The generator could return a word that has a certain length (or syllable count if easily implementable), a list or string of words, etc.</p>
+
+<p>In addition, (unauthenticated?) users could come to the site, generate a couple words and save them to a list if they think the word is intriguing or funny enough for others to see. Users could also vote on the words, so that the "best" fake words are more easily seen.</p>
+
+<p>A list of possible use cases:</p>
+
+<ul>
+<li>Fake names</li>
+
+<li>Filler data</li>
+
+<li>Laughing at the generated words</li>
+
+<li>Used to create a word for a definition that lacks a word</li>
+</ul>
+
+<h2 id="howtouse">How to Use</h2>
+
+<p>There are a couple pieces that are needed to generate a fake word</p>
+
+<ol>
+<li>components - A list of components to sample from to help create a word</li>
+
+<li>order - The order in which a component list is sampled from to create the word
+Both are saved as a string of components or component list names that are separated by a space</li>
+</ol>
+
+<p>For example:</p>
+
+<ul>
+<li><p>Components:</p>
+
+<p><ul>
+<li>consonants = "b c d f g h j k l m n p q r s t v w x y z"</li></p>
+
+<p><li>vowels = "a e i o u"</li></ul>
+
+<p></p></li></p>
+
+<p><li><p>Order:</p></p>
+
+<p><ul>
+<li>three_letter = "consonants vowels consonants"</li></p>
+
+<p><li>five_letter = "consonants vowels consonants vowels consonants"</li></ul></p>
+
+<p></li></p>
+
+<p><li><p>Generating the word by calling <code>GET /words/generate/:name.json</code> where name is the name of the order list:</p></p>
+
+<ul>
+<li><code>/words/generate/three_letter.json</code> might return "jir" or "qaw"</li>
+
+<li><code>/words/generate/five_letter.json</code> might return "bikup" or "voxoy"</li></ul>
+
+<p></li></p>
+
+<p><li><p><code>GET /component_lists.json</code> - Get all lists of word components</p></li></p>
+
+<p><li><p><code>POST /component_lists.json</code> - Post a name and component list as strings to create your own component list to sample from</p></li></p>
+
+<p><li><p><code>PATCH/PUT /component_lists/1.json</code> - Patch or put a name and component list to update your component list</p></li></p>
+
+<p><li><p><code>GET /order_lists.json</code> - Get a list of previously created component arrangements</p></li></p>
+
+<p><li><p><code>POST /order_lists.json</code> - Post a name and order list as strings to create your own arrangement of components</p></li></p>
+
+<p><li><p><code>PATCH/PUT /order_lists/1.json</code> - Patch or put a name and order list to update your order list</p></li>
+</ul></p>
+
+<h2 id="thingstodo">Things to Do</h2>
+
+<ul>
+<li>Get Markov chains to load faster with a large corpus and try generating a word with that</li>
+
+<li>Get arrays to save to the database for slightly faster word generation times</li>
+</ul>
