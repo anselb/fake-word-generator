@@ -29,3 +29,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore files for playing around with and testing ideas
+/app/helpers/test.rb
+/app/helpers/words2.txt
+/app/helpers/words3.txt
