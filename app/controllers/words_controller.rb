@@ -1,6 +1,21 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
 
+  # GET /words/generate/:name
+  # GET /words/generate/:name.json
+  def generate
+    @order_list = OrderList.find_by(name: params[:name])
+    @order_array = @order_list[:order].split(" ")
+
+    word = ""
+    for component in @order_array
+      component_obj = ComponentList.find_by(name: component)
+      comp_array = component_obj[:components].split(" ")
+      word << comp_array.sample
+    end
+    @word = word
+  end
+
   # GET /words
   # GET /words.json
   def index
