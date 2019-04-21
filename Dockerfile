@@ -13,5 +13,10 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
+# Launch the wait tool, then your application.
+# Source: https://dev.to/hugodias/wait-for-mongodb-to-start-on-docker-3h8b
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["/wait", "&&", "rails", "server", "-b", "0.0.0.0"]
