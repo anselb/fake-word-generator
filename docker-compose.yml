@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    hostname: postgres
+    hostname: db
     image: "postgres:11.2"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
@@ -10,7 +10,8 @@ services:
   web:
     build: .
     command: >
-      bash -c "rm -f tmp/pids/server.pid
+      bash -c "/wait
+      && rm -f tmp/pids/server.pid
       && rake db:create
       && rake db:migrate
       && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -21,4 +22,6 @@ services:
     depends_on:
       - db
     environment:
-      WAIT_HOSTS: postgres:5432
+      WAIT_HOSTS: db:5432
+      WAIT_SLEEP_INTERVAL: 5
+      WAIT_HOSTS_TIMEOUT: 60
