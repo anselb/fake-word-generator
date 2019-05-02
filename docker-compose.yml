@@ -5,6 +5,9 @@ services:
     image: "postgres:11.2"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+      # Other method includes creating a named volume
+      # - word_db:/var/lib/postgresql/data
+      # Need to define volumes below if creating a named volume
     ports:
       - "5432:5432"
   web:
@@ -25,3 +28,6 @@ services:
       WAIT_HOSTS: db:5432
       WAIT_SLEEP_INTERVAL: 5
       WAIT_HOSTS_TIMEOUT: 60
+
+# volumes:
+#   word_db
